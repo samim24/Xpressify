@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Xpressify - Premium Responsive Magazine Blog Template</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ============================================================
+           PROFESSIONAL SLICK SLIDER - FULLY RESPONSIVE
+           ============================================================ */
+        
+        .featured-slider-section {
+            position: relative;
+            width: 100%;
+            margin: 40px 0 0;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .slider-container-view {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .slider-wrapper {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        
+        .slide-item {
+            flex: 0 0 100%;
+            width: 100%;
+            position: relative;
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+            border-radius: 12px;
+        }
+        
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 50%, rgba(15, 23, 42, 0.1) 100%);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 70%;
+            color: white;
+        }
+        
+        .slide-title {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 15px 0 0;
+            font-family: var(--font-display);
+        }
+        
+        .slide-title a {
+            color: white;
+            transition: color 0.3s ease;
+        }
+        
+        .slide-title a:hover {
+            color: var(--accent-color);
+        }
+        
+        .node-meta-row {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        
+        .slider-navigation-dots {
+            position: absolute;
+            bottom: 25px;
+            right: 30px;
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+        
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        
+        .slider-dot.active-dot {
+            background: var(--accent-color);
+            width: 28px;
+            border-radius: 20px;
+        }
+        
+        .slider-dot:hover {
+            background: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        .slider-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .slider-arrow {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .slider-arrow:hover {
+            background: var(--accent-color);
+            transform: scale(1.1);
+        }
+        
+        .slider-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.1s linear;
+            z-index: 10;
+            border-radius: 0 0 0 12px;
+        }
+        
+        /* ============================================================
+           FEATURE 12: TRENDING TOPICS SLIDER
+           ============================================================ */
+        
+        .trending-topics-section {
+            margin: 30px 0 20px;
+            overflow: hidden;
+        }
+        
+        .topics-slider-container {
+            position: relative;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .topics-slider-container::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        .topics-slider-container::-webkit-scrollbar-track {
+            background: var(--surface-bg);
+            border-radius: 10px;
+        }
+        
+        .topics-slider-container::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+        
+        .topics-track {
+            display: flex;
+            gap: 15px;
+            padding: 10px 0;
+        }
+        
+        .topic-card {
+            flex-shrink: 0;
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border: 1px solid var(--border-line);
+            border-radius: 12px;
+            padding: 15px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-width: 140px;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.1);
+        }
+        
+        .topic-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .topic-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--dark-charcoal);
+            margin-bottom: 5px;
+        }
+        
+        .topic-count {
+            font-size: 11px;
+            color: var(--meta-text);
+        }
+        
+        .trending-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #f43f5e, #ec4899);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 20px;
+            animation: pulse 1.5s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* ============================================================
+           FEATURE 13: RECENT COMMENTS WIDGET
+           ============================================================ */
+        
+        .recent-comments-widget {
+            margin-top: 25px;
+        }
+        
+        .comment-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-line);
+            transition: all 0.3s ease;
+        }
+        
+        .comment-item:hover {
+            transform: translateX(5px);
+            background: rgba(2, 132, 199, 0.03);
+            padding-left: 8px;
+        }
+        
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .comment-content {
+            flex: 1;
+        }
+        
+        .comment-author {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--dark-charcoal);
+            margin-bottom: 3px;
+        }
+        
+        .comment-text {
+            font-size: 12px;
+            color: var(--body-text);
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+        
+        .comment-time {
+            font-size: 10px;
+            color: var(--meta-text);
+        }
+        
+        .comment-post-link {
+            font-size: 10px;
+            color: var(--accent-color);
+            margin-left: 5px;
+        }
+        
+        /* ============================================================
+           FEATURE 24: SKELETON LOADING SCREENS
+           ============================================================ */
+        
+        .skeleton-card {
+            background: var(--canvas-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .skeleton-media {
+            height: 215px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeletonShimmer 1.5s infinite;
+        }
+        
+        .skeleton-text {
+            height: 12px;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeletonShimmer 1.5s infinite;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        
+        .skeleton-title {
+            height: 20px;
+            width: 80%;
+        }
+        
+        .skeleton-meta {
+            height: 10px;
+            width: 60%;
+        }
+        
+        .skeleton-excerpt {
+            height: 60px;
+        }
+        
+        .skeleton-body {
+            padding: 18px;
+        }
+        
+        @keyframes skeletonShimmer {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+        
+        .skeleton-placeholder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        /* ============================================================
+           RESPONSIVE FIXES
+           ============================================================ */
+        
+        @media (max-width: 992px) {
+            .slide-item {
+                height: 380px;
+                padding: 30px;
+            }
+            .slide-title {
+                font-size: 26px;
+            }
+            .slide-content {
+                max-width: 85%;
+            }
+            .skeleton-placeholder {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .slide-item {
+                height: 320px;
+                padding: 25px;
+            }
+            .slide-title {
+                font-size: 20px;
+            }
+            .slide-content {
+                max-width: 100%;
+            }
+            .slider-navigation-dots {
+                bottom: 15px;
+                right: 20px;
+            }
+            .slider-arrows {
+                display: none;
+            }
+            .topic-card {
+                min-width: 120px;
+                padding: 12px 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slide-item {
+                height: 280px;
+                padding: 20px;
+            }
+            .slide-title {
+                font-size: 18px;
+            }
+            .topic-card {
+                min-width: 100px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV RELEASES INDEX -->
+    <header class="header-navbar">
+        <div class="container header-inline-mesh">
+            <div class="nav-left-zone">
+                <button class="hamburger-btn" id="drawerOpenAction" type="button" aria-label="Open Sidebar Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="nav-center-zone">
+                <a href="#" class="brand-logo">Xpress<span>ify</span></a>
+            </div>
+            <div class="nav-right-zone">
+                <button class="search-btn" id="searchOpenAction" type="button" aria-label="Open Search Interface">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="desktop-nav-strip">
+            <div class="container">
+                <ul class="main-menu-tree">
+                    <li><a href="#" class="menu-link active-item">Home</a></li>
+                    <li class="dropdown-node">
+                        <a href="#" class="menu-link">Features <i class="fas fa-angle-down chevron-icon"></i></a>
+                        <ul class="level-1-submenu">
+                            <li class="nested-dropdown-node">
+                                <a href="#">Multi DropDown <i class="fas fa-angle-right chevron-icon"></i></a>
+                                <ul class="level-2-submenu">
+                                    <li><a href="#">DropDown Page 1</a></li>
+                                    <li><a href="#">DropDown Page 2</a></li>
+                                    <li><a href="#">DropDown Page 3</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Shortcodes</a></li>
+                            <li><a href="#">Sitemap System</a></li>
+                            <li><a href="#">Error 404 Page</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" class="menu-link">Mega Menu</a></li>
+                    <li><a href="#" class="menu-link">Fashion</a></li>
+                    <li><a href="#" class="menu-link">Business Hub</a></li>
+                    <li class="dropdown-node">
+                        <a href="#" class="menu-link">Documentation <i class="fas fa-angle-down chevron-icon"></i></a>
+                        <ul class="level-1-submenu">
+                            <li><a href="#">Web Documentation</a></li>
+                            <li><a href="#">Video Guides</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- SIDEBAR DRAWER MODAL SLIDEOUT -->
+    <div class="sidebar-drawer-backdrop" id="drawerBackdropMesh"></div>
+    <aside class="sidebar-drawer-box" id="drawerPanelContainer">
+        <div class="drawer-top-row">
+            <div class="brand-logo">Xpress<span>ify</span></div>
+            <button class="drawer-close-btn" id="drawerCloseAction" aria-label="Close Sidebar"><i class="fas fa-times"></i></button>
+        </div>
+        <nav class="drawer-navigation-wrapper">
+            <ul class="drawer-nav-tree">
+                <li><a href="#">Home Directory</a></li>
+                <li><a href="#">Features Index</a></li>
+                <li><a href="#">Mega Layout Ecosystem</a></li>
+                <li><a href="#">Fashion Collective</a></li>
+                <li><a href="#">Business Operations</a></li>
+                <li><a href="#">Corporate Bio</a></li>
+                <li><a href="#">Contact Desk</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- FULLSCREEN MODAL OVERLAY SEARCH ENGINE INTERFACE -->
+    <div class="search-fullscreen-deck" id="searchOverlayDeck">
+        <button class="close-overlay-btn" id="searchCloseAction" aria-label="Close Search View"><i class="fas fa-times"></i></button>
+        <div class="search-input-field-wrapper">
+            <input type="text" placeholder="Search architectural articles, logs, tags..." id="globalSearchInput" autocomplete="off">
+            <span class="input-bar-accent"></span>
+        </div>
+    </div>
+
+    <!-- PROFESSIONAL NEWS TICKER -->
+    <div class="ticker-banner-row">
+        <div class="container ticker-flex-align">
+            <div class="ticker-tag">
+                <i class="fas fa-bolt" style="margin-right: 6px;"></i> TRENDING NOW
+            </div>
+            <div class="ticker-scroller-window">
+                <div class="ticker-track-animation">
+                    <a href="#" class="ticker-item-link"><span class="ticker-bullet">●</span> Dynamic CSS infrastructure animations deployed natively inside current updates.</a>
+                    <a href="#" class="ticker-item-link"><span class="ticker-bullet">●</span> Minimalist high fashion frameworks take deep precedence on digital magazine hubs.</a>
+                    <a href="#" class="ticker-item-link"><span class="ticker-bullet">●</span> Monetization strategies shifting as technical fluid layouts speed rendering performance.</a>
+                    <a href="#" class="ticker-item-link"><span class="ticker-bullet">●</span> New structural grids deliver seamless balance options across mobile tablet setups.</a>
+                    <a href="#" class="ticker-item-link"><span class="ticker-bullet">●</span> Dynamic CSS infrastructure animations deployed natively inside current updates.</a>
+                    <a href="#" class="ticker-item-link"><span class="ticker-bullet">●</span> Minimalist high fashion frameworks take deep precedence on digital magazine hubs.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURE 12: TRENDING TOPICS SLIDER -->
+    <div class="container trending-topics-section">
+        <div class="module-header-block">
+            <h2 class="module-heading-title">🔥 Trending Topics</h2>
+            <a href="#" style="font-size: 12px;">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="topics-slider-container">
+            <div class="topics-track" id="topicsTrack">
+                <!-- Topics will be populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURED POSTS SLIDER -->
+    <div class="container">
+        <section class="featured-slider-section">
+            <div class="slider-container-view">
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <div class="slide-item" style="background-image: linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.4)), url('https://picsum.photos/id/30/1280/720'); background-size: cover; background-position: center;">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <div class="node-meta-row"><span style="color:var(--accent-color); font-weight:700;">FASHION</span> <span style="color:#cbd5e1;">• Feb 25, 2026</span></div>
+                            <h2 class="slide-title"><a href="#">Directing Trends: Minimalist Visual Archetypes inside Contemporary High Fashion Platforms</a></h2>
+                        </div>
+                    </div>
+                    <div class="slide-item" style="background-image: linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.4)), url('https://picsum.photos/id/20/1280/720'); background-size: cover; background-position: center;">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <div class="node-meta-row"><span style="color:#10b981; font-weight:700;">BUSINESS</span> <span style="color:#cbd5e1;">• Mar 17, 2026</span></div>
+                            <h2 class="slide-title"><a href="#">Evolving Modern Asset Metrics: Maximizing Global Digital Infrastructure Value Chains</a></h2>
+                        </div>
+                    </div>
+                    <div class="slide-item" style="background-image: linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.4)), url('https://picsum.photos/id/26/1280/720'); background-size: cover; background-position: center;">
+                        <div class="slide-overlay"></div>
+                        <div class="slide-content">
+                            <div class="node-meta-row"><span style="color:#8b5cf6; font-weight:700;">GADGETS</span> <span style="color:#cbd5e1;">• Apr 02, 2026</span></div>
+                            <h2 class="slide-title"><a href="#">Next-Gen System Integrations: Dynamic Fluid Interaction Modules Applied in Desktop Viewports</a></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-progress" id="sliderProgress"></div>
+            </div>
+            <div class="slider-arrows">
+                <button class="slider-arrow" id="prevSlide" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-arrow" id="nextSlide" aria-label="Next slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="slider-navigation-dots" id="sliderDotsContainer"></div>
+        </section>
+    </div>
+
+    <!-- CORE SITE CONTENT WORKSPACE LAYOUT CONTAINER -->
+    <main class="container workspace-grid">
+        
+        <!-- ARTICLE STREAM FEED -->
+        <section class="main-articles-stream">
+            <div class="module-header-block">
+                <h2 class="module-heading-title">Latest Articles</h2>
+            </div>
+            
+            <!-- FEATURE 24: Skeleton Loading Screens -->
+            <div class="skeleton-placeholder" id="skeletonLoader">
+                <div class="skeleton-card">
+                    <div class="skeleton-media"></div>
+                    <div class="skeleton-body">
+                        <div class="skeleton-text skeleton-meta"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-excerpt"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-media"></div>
+                    <div class="skeleton-body">
+                        <div class="skeleton-text skeleton-meta"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-excerpt"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-media"></div>
+                    <div class="skeleton-body">
+                        <div class="skeleton-text skeleton-meta"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-excerpt"></div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-media"></div>
+                    <div class="skeleton-body">
+                        <div class="skeleton-text skeleton-meta"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-excerpt"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="magazine-articles-masonry" id="articlesHydrationGrid" style="display: none;">
+                <!-- Articles will be shown after loading -->
+            </div>
+
+            <div class="pagination-action-center">
+                <button class="async-trigger-btn" id="paginationAsyncTrigger" type="button">
+                    <span id="asyncBtnTextLabel">Load More Articles</span>
+                    <i class="fas fa-sync-alt loader-loop-icon" id="asyncLoadingSpinnerIcon"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="sidebar-right-stream">
+            
+            <div class="sidebar-widget-container">
+                <div class="module-header-block"><h4 class="module-heading-title">Social Connect</h4></div>
+                <div class="social-counter-grid">
+                    <a href="#" class="social-counter-tile tile-facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+                    <a href="#" class="social-counter-tile tile-twitter"><i class="fab fa-twitter"></i><span>Twitter</span></a>
+                    <a href="#" class="social-counter-tile tile-youtube"><i class="fab fa-youtube"></i><span>Youtube</span></a>
+                    <a href="#" class="social-counter-tile tile-instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+                </div>
+            </div>
+
+            <div class="sidebar-widget-container">
+                <div class="module-header-block"><h4 class="module-heading-title">Popular Content</h4></div>
+                <div class="compact-posts-stack">
+                    <div class="compact-post-row">
+                        <div class="compact-mini-thumb" style="background-image: url('https://picsum.photos/id/29/100/100'); background-size: cover; background-position: center;"></div>
+                        <div class="compact-text-node">
+                            <h5><a href="#">Uneasy no settle when nature narrow in afraid</a></h5>
+                            <span>Feb 25, 2026</span>
+                        </div>
+                    </div>
+                    <div class="compact-post-row">
+                        <div class="compact-mini-thumb" style="background-image: url('https://picsum.photos/id/0/100/100'); background-size: cover; background-position: center;"></div>
+                        <div class="compact-text-node">
+                            <h5><a href="#">Day advantages end sufficient eat towards</a></h5>
+                            <span>Mar 17, 2026</span>
+                        </div>
+                    </div>
+                    <div class="compact-post-row">
+                        <div class="compact-mini-thumb" style="background-image: url('https://picsum.photos/id/1/100/100'); background-size: cover; background-position: center;"></div>
+                        <div class="compact-text-node">
+                            <h5><a href="#">Unleash The Fun: Big Savings On Kids' Toys!</a></h5>
+                            <span>Jan 12, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FEATURE 13: RECENT COMMENTS WIDGET -->
+            <div class="sidebar-widget-container recent-comments-widget">
+                <div class="module-header-block"><h4 class="module-heading-title"><i class="fas fa-comments"></i> Recent Comments</h4></div>
+                <div id="recentCommentsList">
+                    <!-- Comments will be populated by JS -->
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- TAG CLOUD SECTION -->
+    <div class="container tag-cloud-section">
+        <div class="module-header-block">
+            <h2 class="module-heading-title">Tag Cloud</h2>
+        </div>
+        <div class="tag-cloud-wrap">
+            <a href="#" class="tag-cloud-item">Fashion</a>
+            <a href="#" class="tag-cloud-item">Business</a>
+            <a href="#" class="tag-cloud-item">Gadgets</a>
+            <a href="#" class="tag-cloud-item">Lifestyle</a>
+            <a href="#" class="tag-cloud-item">Technology</a>
+            <a href="#" class="tag-cloud-item">SEO</a>
+            <a href="#" class="tag-cloud-item">Marketing</a>
+            <a href="#" class="tag-cloud-item">Web Design</a>
+        </div>
+    </div>
+
+    <!-- TRENDING POSTS SECTION -->
+    <div class="container trending-posts-section">
+        <div class="module-header-block">
+            <h2 class="module-heading-title">Trending Posts</h2>
+        </div>
+        <div class="trending-grid-mesh">
+            <article class="premium-article-node">
+                <div class="node-media-lens" style="height:160px;">
+                    <img src="https://picsum.photos/id/12/400/250" alt="Strategic frameworks" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="node-text-body">
+                    <div class="node-meta-row"><span><i class="far fa-calendar"></i> May 18, 2026</span></div>
+                    <h3 class="node-headline" style="font-size:15px;"><a href="#">Strategic Frameworks to Accelerated Startup Revenue Scales</a></h3>
+                </div>
+            </article>
+            <article class="premium-article-node">
+                <div class="node-media-lens" style="height:160px;">
+                    <img src="https://picsum.photos/id/26/400/250" alt="Fluid animation" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="node-text-body">
+                    <div class="node-meta-row"><span><i class="far fa-calendar"></i> Apr 29, 2026</span></div>
+                    <h3 class="node-headline" style="font-size:15px;"><a href="#">The Critical Impact of Fluid Animation Physics on SaaS Metrics</a></h3>
+                </div>
+            </article>
+            <article class="premium-article-node">
+                <div class="node-media-lens" style="height:160px;">
+                    <img src="https://picsum.photos/id/3/400/250" alt="Corporate aesthetics" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="node-text-body">
+                    <div class="node-meta-row"><span><i class="far fa-calendar"></i> Apr 11, 2026</span></div>
+                    <h3 class="node-headline" style="font-size:15px;"><a href="#">Refining Corporate Aesthetics with Tailored Modular Layout Systems</a></h3>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- CATEGORY SECTION -->
+    <div class="container category-section">
+        <div class="module-header-block">
+            <h2 class="module-heading-title">Trending Categories</h2>
+        </div>
+        <div class="category-tag-wrap">
+            <a href="#" class="category-tag-item"><span>Fashion</span><span class="category-tag-counter">14</span></a>
+            <a href="#" class="category-tag-item"><span>Business</span><span class="category-tag-counter">29</span></a>
+            <a href="#" class="category-tag-item"><span>Gadgets</span><span class="category-tag-counter">18</span></a>
+            <a href="#" class="category-tag-item"><span>Technology</span><span class="category-tag-counter">42</span></a>
+            <a href="#" class="category-tag-item"><span>Lifestyle</span><span class="category-tag-counter">21</span></a>
+            <a href="#" class="category-tag-item"><span>Marketing</span><span class="category-tag-counter">35</span></a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="master-production-footer">
+        <div class="container footer-structural-mesh">
+            <div class="footer-block-node">
+                <h3 class="brand-logo" style="color:#ffffff; margin-bottom: 12px;">Xpress<span>ify</span></h3>
+                <p class="footer-paragraph">A premium high-fidelity digital media template engineered for fast asset rendering performance, seamless grid alignments, and premium editorial scannability.</p>
+            </div>
+
+            <div class="footer-block-node">
+                <h4>Quick Links</h4>
+                <ul class="footer-link-tree">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Company</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Editorial Team</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Write For Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Advertise With Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Desk</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-block-node">
+                <h4>Popular Content</h4>
+                <div class="footer-widget-posts">
+                    <div class="footer-compact-post">
+                        <div class="footer-mini-thumb" style="background-image: url('https://picsum.photos/id/29/80/80'); background-size: cover; background-position: center; width: 60px; height: 60px; border-radius: 6px; margin-right: 15px;"></div>
+                        <div class="footer-mini-txt">
+                            <h5><a href="#">Minimalist Visual Archetypes Inside Fashion</a></h5>
+                            <span>Feb 25, 2026</span>
+                        </div>
+                    </div>
+                    <div class="footer-compact-post">
+                        <div class="footer-mini-thumb" style="background-image: url('https://picsum.photos/id/0/80/80'); background-size: cover; background-position: center; width: 60px; height: 60px; border-radius: 6px; margin-right: 15px;"></div>
+                        <div class="footer-mini-txt">
+                            <h5><a href="#">Maximizing Global Digital Infrastructure Value</a></h5>
+                            <span>Mar 17, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-block-node">
+                <h4>Newsletter</h4>
+                <p class="footer-paragraph" style="margin-top:0; margin-bottom:15px;">Get high value curated industry briefings directly inside your inbox terminal weekly.</p>
+                <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+                    <div class="newsletter-input-group">
+                        <input type="email" placeholder="Your email address..." required autocomplete="off">
+                        <button type="submit" class="newsletter-submit-btn" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-copyright-strip">
+            <div class="container copyright-split-container">
+                <p class="copyright-txt-string">&copy; 2026 Xpressify. Premium Media System Framework.</p>
+                <div class="sub-links-deck">
+                    <a href="#">Privacy Framework</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Site Index</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+    // ============================================================
+    // PROFESSIONAL SLIDER WITH PROGRESS BAR
+    // ============================================================
+    (function() {
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const dotsContainer = document.getElementById('sliderDotsContainer');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        const progressBar = document.getElementById('sliderProgress');
+        
+        if (!sliderWrapper || !dotsContainer) return;
+        
+        const slides = sliderWrapper.children;
+        const slideCount = slides.length;
+        let currentIndex = 0;
+        let autoPlayInterval;
+        let isTransitioning = false;
+        let progressInterval;
+        
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot';
+                if (i === currentIndex) dot.classList.add('active-dot');
+                dot.setAttribute('data-index', i);
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    if (!isTransitioning && i !== currentIndex) {
+                        goToSlide(i);
+                        resetAutoPlay();
+                    }
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        function updateActiveStates() {
+            const dots = document.querySelectorAll('.slider-dot');
+            dots.forEach((dot, idx) => {
+                if (idx === currentIndex) {
+                    dot.classList.add('active-dot');
+                } else {
+                    dot.classList.remove('active-dot');
+                }
+            });
+        }
+        
+        function goToSlide(index) {
+            if (isTransitioning) return;
+            if (index < 0) index = 0;
+            if (index >= slideCount) index = slideCount - 1;
+            if (index === currentIndex) return;
+            
+            isTransitioning = true;
+            currentIndex = index;
+            const offset = -currentIndex * 100;
+            sliderWrapper.style.transform = `translateX(${offset}%)`;
+            updateActiveStates();
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 500);
+        }
+        
+        function nextSlide() {
+            if (isTransitioning) return;
+            let next = currentIndex + 1;
+            if (next >= slideCount) next = 0;
+            goToSlide(next);
+        }
+        
+        function prevSlide() {
+            if (isTransitioning) return;
+            let prev = currentIndex - 1;
+            if (prev < 0) prev = slideCount - 1;
+            goToSlide(prev);
+        }
+        
+        function startAutoPlay() {
+            if (autoPlayInterval) clearInterval(autoPlayInterval);
+            if (progressInterval) clearInterval(progressInterval);
+            
+            autoPlayInterval = setInterval(() => {
+                if (!isTransitioning) {
+                    nextSlide();
+                    resetProgressBar();
+                }
+            }, 6000);
+            
+            startProgressBar();
+        }
+        
+        function startProgressBar() {
+            if (progressBar) {
+                progressBar.style.width = '0%';
+                let width = 0;
+                const interval = 6000 / 100;
+                progressInterval = setInterval(() => {
+                    if (!isTransitioning && width < 100) {
+                        width++;
+                        progressBar.style.width = width + '%';
+                    }
+                }, interval);
+            }
+        }
+        
+        function resetProgressBar() {
+            if (progressBar) {
+                if (progressInterval) clearInterval(progressInterval);
+                progressBar.style.width = '0%';
+                startProgressBar();
+            }
+        }
+        
+        function resetAutoPlay() {
+            if (autoPlayInterval) clearInterval(autoPlayInterval);
+            if (progressInterval) clearInterval(progressInterval);
+            startAutoPlay();
+        }
+        
+        const sliderSection = document.querySelector('.featured-slider-section');
+        if (sliderSection) {
+            sliderSection.addEventListener('mouseenter', () => {
+                if (autoPlayInterval) clearInterval(autoPlayInterval);
+                if (progressInterval) clearInterval(progressInterval);
+            });
+            
+            sliderSection.addEventListener('mouseleave', () => {
+                startAutoPlay();
+            });
+        }
+        
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        sliderWrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        sliderWrapper.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchEndX - touchStartX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) {
+                    prevSlide();
+                } else {
+                    nextSlide();
+                }
+                resetAutoPlay();
+            }
+        });
+        
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+        
+        createDots();
+        goToSlide(0);
+        startAutoPlay();
+        
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                const offset = -currentIndex * 100;
+                sliderWrapper.style.transition = 'none';
+                sliderWrapper.style.transform = `translateX(${offset}%)`;
+                setTimeout(() => {
+                    sliderWrapper.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }, 50);
+            }, 150);
+        });
+    })();
+
+    // ============================================================
+    // FEATURE 12: TRENDING TOPICS SLIDER
+    // ============================================================
+    (function() {
+        const topics = [
+            { name: "Fashion", icon: "fa-tshirt", count: "1.2k", trending: true },
+            { name: "Technology", icon: "fa-microchip", count: "3.4k", trending: true },
+            { name: "Business", icon: "fa-chart-line", count: "2.1k", trending: false },
+            { name: "Gadgets", icon: "fa-mobile-alt", count: "892", trending: true },
+            { name: "Lifestyle", icon: "fa-heart", count: "1.5k", trending: false },
+            { name: "Travel", icon: "fa-plane", count: "654", trending: false },
+            { name: "Food", icon: "fa-utensils", count: "432", trending: true },
+            { name: "Health", icon: "fa-heartbeat", count: "789", trending: false }
+        ];
+        
+        const topicsTrack = document.getElementById('topicsTrack');
+        if (topicsTrack) {
+            topicsTrack.innerHTML = topics.map(topic => `
+                <div class="topic-card" style="position: relative;">
+                    ${topic.trending ? '<span class="trending-badge"><i class="fas fa-fire"></i> Trending</span>' : ''}
+                    <i class="fas ${topic.icon} topic-icon" style="color: var(--accent-color);"></i>
+                    <div class="topic-name">${topic.name}</div>
+                    <div class="topic-count">${topic.count} posts</div>
+                </div>
+            `).join('');
+        }
+    })();
+
+    // ============================================================
+    // FEATURE 13: RECENT COMMENTS WIDGET
+    // ============================================================
+    (function() {
+        const comments = [
+            { author: "Sarah Johnson", avatar: "SJ", text: "This article completely changed my perspective on minimalist design. Amazing insights!", time: "5 min ago", post: "Fashion Trends" },
+            { author: "Michael Chen", avatar: "MC", text: "Great read! The section about fluid grids was particularly helpful for my project.", time: "23 min ago", post: "Business Hub" },
+            { author: "Emma Watson", avatar: "EW", text: "I've been looking for content like this. Keep up the excellent work team!", time: "1 hour ago", post: "Technology" },
+            { author: "David Kim", avatar: "DK", text: "The examples provided are very practical. Bookmarked for future reference!", time: "3 hours ago", post: "Gadgets" },
+            { author: "Lisa Martinez", avatar: "LM", text: "Finally someone who explains these concepts clearly. Thank you!", time: "5 hours ago", post: "Lifestyle" }
+        ];
+        
+        const commentsList = document.getElementById('recentCommentsList');
+        if (commentsList) {
+            commentsList.innerHTML = comments.map(comment => `
+                <div class="comment-item">
+                    <div class="comment-avatar">${comment.avatar}</div>
+                    <div class="comment-content">
+                        <div class="comment-author">${comment.author}</div>
+                        <div class="comment-text">${comment.text}</div>
+                        <div class="comment-time">
+                            <i class="far fa-clock"></i> ${comment.time}
+                            <a href="#" class="comment-post-link">on ${comment.post}</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    })();
+
+    // ============================================================
+    // FEATURE 24: SKELETON LOADING SCREENS
+    // ============================================================
+    (function() {
+        const skeletonLoader = document.getElementById('skeletonLoader');
+        const articlesGrid = document.getElementById('articlesHydrationGrid');
+        
+        if (skeletonLoader && articlesGrid) {
+            // Simulate loading delay
+            setTimeout(() => {
+                skeletonLoader.style.display = 'none';
+                articlesGrid.style.display = 'grid';
+                
+                // Populate articles (simulated)
+                const articles = [
+                    { title: "Uneasy no settle when nature narrow in afraid", category: "Fashion", gradient: "gradient-1", date: "Feb 25, 2026", img: "29", catClass: "pill-red" },
+                    { title: "Day advantages end sufficient eat towards", category: "Business", gradient: "gradient-2", date: "Mar 17, 2026", img: "0", catClass: "pill-green" },
+                    { title: "Unleash The Fun: Big Savings On Kids' Toys!", category: "Fashion", gradient: "gradient-3", date: "Jan 12, 2026", img: "1", catClass: "pill-red" },
+                    { title: "Insipidity sufficient dispatched any reasonably led ask", category: "Gadgets", gradient: "gradient-4", date: "Aug 05, 2025", img: "12", catClass: "pill-purple" },
+                    { title: "Why Do Aerobically Fit Children Have Better Math Skills?", category: "Business", gradient: "gradient-5", date: "Nov 14, 2025", img: "26", catClass: "pill-green" },
+                    { title: "10 Simple Truth About Raising Happy and Successful Kids", category: "Technology", gradient: "gradient-6", date: "Dec 29, 2025", img: "3", catClass: "pill-purple" }
+                ];
+                
+                articlesGrid.innerHTML = articles.map((article, index) => `
+                    <article class="premium-article-node">
+                        <div class="node-media-lens">
+                            <img src="https://picsum.photos/id/${article.img}/800/500" alt="${article.category}" style="width:100%; height:100%; object-fit:cover;">
+                            <span class="category-pill ${article.catClass}">${article.category}</span>
+                        </div>
+                        <div class="node-text-body">
+                            <div class="node-meta-row">
+                                <span><i class="far fa-user"></i> Sora Blogging</span>
+                                <span><i class="far fa-calendar"></i> ${article.date}</span>
+                            </div>
+                            <h3 class="node-headline"><a href="#">${article.title}</a></h3>
+                            <p class="node-summary">It bachelor cheerful of mistaken. Tore has sons put upon wife use bred seen. Its dissimilar invisible structures provide ultimate structural integrity directly...</p>
+                        </div>
+                    </article>
+                `).join('');
+            }, 1500);
+        }
+    })();
+
+    // ============================================================
+    // LOAD MORE BUTTON FUNCTIONALITY
+    // ============================================================
+    (function() {
+        const paginationAsyncTrigger = document.getElementById('paginationAsyncTrigger');
+        const articlesHydrationGrid = document.getElementById('articlesHydrationGrid');
+        const asyncLoadingSpinnerIcon = document.getElementById('asyncLoadingSpinnerIcon');
+        const asyncBtnTextLabel = document.getElementById('asyncBtnTextLabel');
+        
+        if (paginationAsyncTrigger && articlesHydrationGrid && asyncLoadingSpinnerIcon && asyncBtnTextLabel) {
+            const dynamicPayloadMock = [
+                { title: "Style begin mr heard by in music tried do layout structures", cat: "Fashion", catClass: "pill-red", gradient: "gradient-1", date: "Jan 09, 2026", img: "30" },
+                { title: "Why optimization of clean digital channels boosts monetization strategies", cat: "Business", catClass: "pill-green", gradient: "gradient-4", date: "May 18, 2026", img: "20" },
+                { title: "The future of AI in content creation and digital marketing", cat: "Technology", catClass: "pill-purple", gradient: "gradient-5", date: "Jun 01, 2026", img: "26" }
+            ];
+            
+            let isLoading = false;
+            
+            paginationAsyncTrigger.addEventListener('click', function() {
+                if (isLoading) return;
+                
+                isLoading = true;
+                paginationAsyncTrigger.style.pointerEvents = "none";
+                asyncLoadingSpinnerIcon.style.display = "inline-block";
+                asyncBtnTextLabel.textContent = "Fetching Stream Data...";
+                
+                setTimeout(() => {
+                    dynamicPayloadMock.forEach(item => {
+                        const postElementCard = document.createElement("article");
+                        postElementCard.className = "premium-article-node";
+                        
+                        postElementCard.style.opacity = "0";
+                        postElementCard.style.transform = "translateY(22px)";
+                        postElementCard.style.transition = "all 0.45s cubic-bezier(0.25, 0.8, 0.25, 1)";
+                        
+                        postElementCard.innerHTML = `
+                            <div class="node-media-lens">
+                                <img src="https://picsum.photos/id/${item.img}/800/500" alt="${item.cat}" style="width:100%; height:100%; object-fit:cover;">
+                                <span class="category-pill ${item.catClass}">${item.cat}</span>
+                            </div>
+                            <div class="node-text-body">
+                                <div class="node-meta-row">
+                                    <span><i class="far fa-user"></i> Sora Blogging</span>
+                                    <span><i class="far fa-calendar"></i> ${item.date}</span>
+                                </div>
+                                <h3 class="node-headline"><a href="#">${item.title}</a></h3>
+                                <p class="node-summary">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.</p>
+                            </div>
+                        `;
+                        
+                        articlesHydrationGrid.appendChild(postElementCard);
+                        
+                        requestAnimationFrame(() => {
+                            postElementCard.style.opacity = "1";
+                            postElementCard.style.transform = "translateY(0)";
+                        });
+                    });
+                    
+                    asyncLoadingSpinnerIcon.style.display = "none";
+                    asyncBtnTextLabel.textContent = "All Content Synthesized";
+                    paginationAsyncTrigger.style.opacity = "0.4";
+                    isLoading = false;
+                }, 1100);
+            });
+        }
+    })();
+    </script>
+    <style>
+        .node-media-lens img,
+        .footer-mini-thumb {
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .premium-article-node:hover .node-media-lens img {
+            transform: scale(1.05);
+        }
+        
+        .footer-compact-post {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .footer-mini-txt h5 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #cbd5e1;
+        }
+        
+        .footer-mini-txt h5 a:hover {
+            color: var(--accent-color);
+        }
+        
+        .footer-mini-txt span {
+            font-size: 11px;
+            color: #64748b;
+        }
+        
+        .compact-mini-thumb {
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .compact-post-row:hover .compact-mini-thumb {
+            transform: scale(1.05);
+        }
+        
+        .magazine-articles-masonry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .magazine-articles-masonry {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .magazine-articles-masonry .premium-article-node:first-child {
+            grid-column: 1 / -1;
+            position: relative;
+            height: 380px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .magazine-articles-masonry .premium-article-node:first-child .node-media-lens {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+            z-index: 1;
+        }
+        
+        .magazine-articles-masonry .premium-article-node:first-child .node-media-lens::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 10%, rgba(15, 23, 42, 0.3) 100%);
+        }
+        
+        .magazine-articles-masonry .premium-article-node:first-child .node-text-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 35px;
+            z-index: 2;
+            color: #ffffff;
+        }
+        
+        .magazine-articles-masonry .premium-article-node:first-child .node-headline,
+        .magazine-articles-masonry .premium-article-node:first-child .node-headline a {
+            color: #ffffff;
+            font-size: 26px;
+        }
+    </style>
+</body>
+</html>
